@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna — AI Assistant</title>
+    <meta name="description" content="Anna, your personal AI voice assistant. Say 'Anna' to begin.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Background particle field -->
+    <canvas id="particles"></canvas>
+
+    <!-- Main interface -->
+    <div id="container">
+
+        <!-- Top wordmark -->
+        <div id="wordmark">
+            <span id="wordmark-a">A</span><span id="wordmark-nna">nna</span>
+        </div>
+
+        <!-- Central circle canvas -->
+        <canvas id="annaCircle"></canvas>
+
+        <!-- Status ring indicator -->
+        <div id="statusRing">
+            <div id="statusRingInner"></div>
+        </div>
+
+        <!-- State label -->
+        <div id="statusText">Connecting...</div>
+
+        <!-- Transcript bubble -->
+        <div id="transcriptBox">
+            <div id="transcriptIcon">⬤</div>
+            <div id="transcript"></div>
+        </div>
+
+        <!-- Bottom info strip -->
+        <div id="bottomBar">
+            <span id="connectionStatus" class="dot-indicator offline"></span>
+            <span id="connectionLabel">Offline</span>
+            <span class="separator">|</span>
+            <span id="modelLabel">mistral:7b</span>
+        </div>
+
+    </div>
+
+    <script src="/static/animation.js"></script>
+</body>
+</html>

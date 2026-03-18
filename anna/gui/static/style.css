@@ -1,0 +1,217 @@
+/* ==============================
+   Anna GUI — Premium Dark Theme
+   ============================== */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue-dim:     hsl(214, 85%, 50%);
+    --blue-bright:  hsl(210, 100%, 60%);
+    --blue-glow:    hsl(205, 100%, 65%);
+    --cyan-accent:  hsl(190, 100%, 60%);
+    --bg-deep:      hsl(225, 30%, 5%);
+    --bg-mid:       hsl(225, 25%, 9%);
+    --text-primary: hsl(0, 0%, 95%);
+    --text-muted:   hsl(220, 10%, 55%);
+    --text-accent:  hsl(210, 100%, 70%);
+    --radius-pill:  999px;
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(ellipse at 50% 40%, hsl(220, 30%, 10%) 0%, var(--bg-deep) 70%);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+/* ─── Background Particle Canvas ─── */
+#particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    z-index: 0;
+}
+
+/* ─── Main Container ─── */
+#container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+/* ─── Wordmark ─── */
+#wordmark {
+    position: absolute;
+    top: 40px;
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+#wordmark-a {
+    color: var(--blue-bright);
+    font-weight: 500;
+}
+
+/* ─── Main Circle Canvas ─── */
+#annaCircle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* ─── Status Ring (outer border animation) ─── */
+#statusRing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 1px solid hsla(210, 100%, 70%, 0.08);
+    transition: var(--transition-smooth);
+    z-index: 1;
+}
+#statusRingInner {
+    position: absolute;
+    inset: 10px;
+    border-radius: 50%;
+    border: 1px solid hsla(210, 100%, 70%, 0.04);
+}
+
+/* ─── Status Text ─── */
+#statusText {
+    position: absolute;
+    bottom: calc(50% - 170px);
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    z-index: 3;
+    transition: var(--transition-smooth);
+    opacity: 0.8;
+}
+
+/* ─── Transcript Box ─── */
+#transcriptBox {
+    position: absolute;
+    bottom: 18%;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: min(680px, 88vw);
+    min-height: 28px;
+    z-index: 3;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: var(--transition-smooth);
+}
+#transcriptBox.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+#transcriptIcon {
+    font-size: 0.5rem;
+    color: var(--cyan-accent);
+    margin-top: 5px;
+    flex-shrink: 0;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+#transcript {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    line-height: 1.6;
+    text-align: left;
+    word-break: break-word;
+}
+
+/* ─── Bottom Info Bar ─── */
+#bottomBar {
+    position: absolute;
+    bottom: 28px;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 3;
+}
+.dot-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background 0.4s ease;
+}
+.dot-indicator.online  { background: hsl(142, 70%, 50%); box-shadow: 0 0 6px hsl(142, 70%, 50%); }
+.dot-indicator.offline { background: hsl(0, 0%, 35%); }
+.separator { opacity: 0.3; }
+
+/* ─── State Modifiers ─── */
+
+/* Active state — wordmark brightens */
+body.state-active #wordmark,
+body.state-listening #wordmark,
+body.state-speaking #wordmark {
+    color: var(--text-primary);
+}
+
+/* Ring expands on active/speaking */
+body.state-active #statusRing,
+body.state-speaking #statusRing {
+    border-color: hsla(210, 100%, 70%, 0.25);
+    box-shadow: 0 0 40px hsla(210, 100%, 65%, 0.1);
+}
+body.state-active #statusRingInner,
+body.state-speaking #statusRingInner {
+    border-color: hsla(210, 100%, 70%, 0.12);
+}
+
+/* Status text color per state */
+body.state-active #statusText    { color: var(--blue-bright); opacity: 1; }
+body.state-listening #statusText { color: var(--cyan-accent); opacity: 1; }
+body.state-speaking #statusText  { color: var(--blue-glow); opacity: 1; }
+body.state-idle #statusText      { color: var(--text-muted); opacity: 0.8; }
+
+/* ─── Utility ─── */
+.fade-in {
+    animation: fade-up 0.35s ease forwards;
+}
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,26 @@
+# Voice Processing
+faster-whisper==1.0.3
+coqui-tts
+sounddevice==0.4.7
+soundfile==0.12.1
+numpy
+pyaudio==0.2.14
+
+# LLM Integration (PRD 2)
+ollama==0.1.8
+
+# Notion Integration (PRD 4)
+notion-client==2.2.1
+
+# Utilities
+python-dotenv==1.0.1
+
+# Testing (PRD 5)
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-timeout==2.2.0
+
+# GUI / Web (PRD 6)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+websockets==12.0
